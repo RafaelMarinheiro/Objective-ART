@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Geometry.h"
+#include "Point.h"
 
 namespace oart{
 	class Line

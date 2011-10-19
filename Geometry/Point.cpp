@@ -1,3 +1,5 @@
+#include "GeometryAFX.h"
+
 #include "Point.h"
 #include <math.h>
 

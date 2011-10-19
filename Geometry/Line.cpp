@@ -1,5 +1,6 @@
 #include "GeometryAFX.h"
-#include "Geometry.h"
+#include "Line.h"
+#include "Point.h"
 #include <cmath>
 
 using namespace oart;
