@@ -1,6 +1,7 @@
 #include "PatternAFX.h"
 
 #include "Pattern.h"
+#include "Marker.h"
 #include <cstring>
 
 using namespace oart;

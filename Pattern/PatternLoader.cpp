@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <cstdio>
-//#include <AR\ar.h>
+#include <AR\ar.h>
 
 using namespace oart;
 
@@ -14,6 +14,7 @@ PatternLoader::PatternLoader(char * filePath)
 	int size = strlen(filePath);
 	this->filePath = new char[size];
 	strcpy_s(this->filePath, size, filePath);
+	this->mloadedPatterns = nullptr;
 }
 
 PatternLoader::PatternLoader(PatternLoader & p)
@@ -22,6 +23,7 @@ PatternLoader::PatternLoader(PatternLoader & p)
 	int size = strlen(p.filePath);
 	this->filePath = new char[size];
 	strcpy_s(this->filePath, size, filePath);
+	this->mloadedPatterns = p.mloadedPatterns;
 }
 
 PatternLoader & PatternLoader::operator=(PatternLoader & p)
@@ -33,6 +35,7 @@ PatternLoader & PatternLoader::operator=(PatternLoader & p)
 		int size = strlen(p.filePath);
 		this->filePath = new char[size];
 		strcpy_s(this->filePath, size, filePath);
+		this->mloadedPatterns;
 		return (*this);
 	}
 }
@@ -42,9 +45,14 @@ PatternLoader::~PatternLoader()
 	delete[] this->filePath;
 }
 
-const int & PatternLoader::numberOfPatternsLoaded() const
+const int & PatternLoader::numberOfLoadedPatterns() const
 {
 	return this->numberPatterns;
+}
+
+const Pattern * PatternLoader::loadedPatterns() const
+{
+	return this->mloadedPatterns;
 }
 
 Pattern * PatternLoader::loadPatterns()
@@ -74,8 +82,7 @@ Pattern * PatternLoader::loadPatterns()
 			delete[] patterns;
 			//InputFormatException
 		}
-		id = 1;
-		//id = arLoadPatt(path);
+		id = arLoadPatt(path);
 		if(id < 0){
 			delete[] patterns;
 			//PatternFormatException
@@ -83,5 +90,6 @@ Pattern * PatternLoader::loadPatterns()
 		patterns[i] = Pattern(id, name, size, Point(x, y));
 	}
 	this->numberPatterns = numberPatterns;
+	this->mloadedPatterns = patterns;
 	return patterns;
 }

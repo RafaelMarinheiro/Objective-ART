@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Marker.h"
-
 namespace oart{
+	class Marker;
 	class Pattern
 	{
 	public:

@@ -11,13 +11,15 @@ namespace oart{
 		PatternLoader & operator=(PatternLoader & p);
 		~PatternLoader();
 
-		const int & numberOfPatternsLoaded() const;
+		const int & numberOfLoadedPatterns() const;
+		const Pattern * loadedPatterns() const;
 
 		Pattern * loadPatterns();
 
 	private:
 		int numberPatterns;
 		char * filePath;
+		Pattern * mloadedPatterns;
 	};
 }
 
